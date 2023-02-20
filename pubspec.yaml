@@ -1,6 +1,6 @@
 name: coocree_radio_group
 description: "O `SimpleCheckBoxFormField` é um widget que permite exibir um grupo de CheckBox buttons em uma grade simples."
-version: 0.0.1
+version: 0.0.2
 homepage: ""
 
 environment:

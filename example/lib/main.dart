@@ -35,6 +35,22 @@ class ExamplePage extends StatefulWidget {
 class _ExamplePageState extends State<ExamplePage> {
   // Chave global para o formulário
   final formKey = GlobalKey<FormState>();
+  final List<OptionItem> listOptionItem = [
+    OptionItem(label: "Pedidos", value: false, id: "pedidos"),
+    OptionItem(label: "Manutenção", value: false, id: "manutencao"),
+    OptionItem(label: "Atendimento", value: false, id: "atendimento"),
+    OptionItem(label: "Entrega", value: false, id: "entrega"),
+    OptionItem(label: "PedidosA", value: false, id: "pedidosA"),
+    OptionItem(label: "ManutençãoA", value: false, id: "manutencaoA"),
+    OptionItem(label: "AtendimentoA", value: false, id: "atendimentoA"),
+    OptionItem(label: "EntregaA", value: false, id: "entregaA"),
+  ];
+  final List<OptionItem> listOptionSelectedItem = [
+    OptionItem(label: "Pedidos", value: true, id: "pedidos"),
+    OptionItem(label: "Manutenção", value: true, id: "manutencao"),
+    OptionItem(label: "AtendimentoA", value: true, id: "atendimentoA"),
+    OptionItem(label: "EntregaA", value: true, id: "entregaA"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +65,9 @@ class _ExamplePageState extends State<ExamplePage> {
                 child: Column(
                   children: [
                     SimpleCheckBoxFormField(
-                      //initialValue: "manta",
-                      options: [
-                        OptionItem(label: "Listen", value: false),
-                        OptionItem(label: "Hear", value: false),
-                      ],
+                      initialValue: listOptionSelectedItem,
+                      options: listOptionItem,
                       validator: (value) {
-                        print("VALIDATOR-->>$value");
                         if (value == null) {
                           return 'Por favor selecione um produto';
                         }

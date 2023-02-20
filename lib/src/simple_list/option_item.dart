@@ -3,18 +3,21 @@
 /// Esta classe pode ser usada para representar um item de opção em um menu de seleção
 /// ou em outras situações em que é necessário um rótulo descritivo para um determinado valor.
 class OptionItem<T> {
+  /// O identificador do item.
+  final String id;
+
   /// O rótulo descritivo para este item de opção.
   final String label;
 
   /// O valor associado a este item de opção.
-  final T value;
+  T value;
 
   /// Cria um novo [OptionItem] com o [label] especificado e o [value] associado.
-  OptionItem({required this.label, required this.value});
+  OptionItem({required this.label, required this.value, required this.id});
 
   /// Retorna uma representação em string deste [OptionItem] com o nome da classe, o rótulo e o valor.
   @override
   String toString() {
-    return 'Instance of OptionItem(name:$label, value:$value)';
+    return 'Instance of OptionItem(name:$label, value:$value, id:$id)';
   }
 }

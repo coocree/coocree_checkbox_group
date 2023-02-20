@@ -1,3 +1,4 @@
-## 0.0.15
+## 0.0.2
 
-* Atualizado o sistema de CHANGELOG.
+* Implementado o valor inicial.
+* Implementado `onSaved` e `onChanged` para retornar `List<OptionItem>`

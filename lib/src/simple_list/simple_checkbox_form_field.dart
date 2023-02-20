@@ -3,9 +3,9 @@ import 'package:coocree_radio_group/src/simple_list/row_and_column.dart';
 import 'package:flutter/material.dart';
 
 // Widget que exibe um grupo de radio buttons em uma grade simples
-class SimpleCheckBoxFormField extends FormField<bool> {
+class SimpleCheckBoxFormField extends FormField<List<OptionItem>> {
   // O valor inicial do formulário
-  final bool? initialValue;
+  final List<OptionItem>? initialValue;
 
   // As opções a serem exibidas
   final List<OptionItem> options;
@@ -20,12 +20,12 @@ class SimpleCheckBoxFormField extends FormField<bool> {
   final String? errorText;
 
   // Função chamada quando um item do radio button é alterado
-  final ValueChanged<bool?>? onChanged;
+  final ValueChanged<List<OptionItem>?>? onChanged;
 
   SimpleCheckBoxFormField({
     Key? key,
-    FormFieldSetter<bool>? onSaved,
-    FormFieldValidator<bool>? validator,
+    FormFieldSetter<List<OptionItem>>? onSaved,
+    FormFieldValidator<List<OptionItem>>? validator,
     this.initialValue,
     required this.options,
     this.minWidth = 230,
@@ -36,7 +36,7 @@ class SimpleCheckBoxFormField extends FormField<bool> {
     onSaved: onSaved,
     validator: validator,
     initialValue: initialValue,
-    builder: (FormFieldState<bool> state) {
+    builder: (FormFieldState<List<OptionItem>> state) {
       // Método que constrói a grade de radio buttons
       dynamic rowAndColumn(BoxConstraints constraints) {
         int maxColumns = (constraints.maxWidth / maxWidth).round();
@@ -48,6 +48,7 @@ class SimpleCheckBoxFormField extends FormField<bool> {
         }
 
         return RowAndColumn(
+          initialValue: initialValue,
           options: options,
           maxColumns: maxColumns,
           constraints: boxConstraints,
