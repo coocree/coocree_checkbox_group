@@ -69,6 +69,19 @@ class _ExamplePageState extends State<ExamplePage> {
                 key: formKey,
                 child: Column(
                   children: [
+                    const SearchableDropdown(
+                      items: ["Item1", "Item2", 'Item3', "Item4", "Item5", 'k1'],
+                      hintText: "Componentes",
+                    ),
+                    const SizedBox(height: 20),
+                    const DropFormItem(
+                      hintText: "Defeitos",
+                      items: [
+                        'Teste1',
+                        'Teste2',
+                        'Teste3',
+                      ],
+                    ),
                     SimpleRadioFormField(
                       options: listRadio,
                       validator: (value) {
