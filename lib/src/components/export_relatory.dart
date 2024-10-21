@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import '../../package.dart';
 
 class ExportRelatory extends StatefulWidget {
-  const ExportRelatory({super.key});
+  final String searchbleHintText;
+  final List<OptionItem> listRadio;
+  final List<dynamic> searchableDropdown;
+  const ExportRelatory({
+    super.key,
+    required this.listRadio,
+    required this.searchableDropdown,
+    required this.searchbleHintText,
+  });
 
   @override
   State<ExportRelatory> createState() => _ExportRelatoryState();
 }
 
 class _ExportRelatoryState extends State<ExportRelatory> {
-  final List<OptionItem> listRadio = [
-    OptionItem(id: "geral", label: "Geral", value: "geral"),
-    OptionItem(id: "ar", label: "AR", value: "ar"),
-  ];
-
   String? selectedOption;
 
   @override
@@ -25,7 +28,7 @@ class _ExportRelatoryState extends State<ExportRelatory> {
         child: Column(
           children: [
             SimpleRadioFormField(
-              options: listRadio,
+              options: widget.listRadio,
               validator: (value) {
                 if (value == null) {
                   return 'Por favor selecione um produto';
@@ -43,11 +46,11 @@ class _ExportRelatoryState extends State<ExportRelatory> {
             ),
             const SizedBox(height: 20),
             if (selectedOption == "geral")
-              const Column(
+              Column(
                 children: [
                   SearchableDropdown(
-                    hintText: "Componentes",
-                    items: ["Item1", "Item2", 'Item3', "Item4", "Item5", 'k1'],
+                    hintText: widget.searchbleHintText,
+                    items: widget.searchableDropdown,
                   ),
                   DropFormItem(
                     hintText: "Defeitos",

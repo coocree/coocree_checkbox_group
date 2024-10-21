@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SearchableDropdown extends StatefulWidget {
-  final List<String> items;
+  final List<dynamic> items;
   final String hintText;
   final ValueChanged<String>? onItemSelected;
 
@@ -18,7 +18,7 @@ class SearchableDropdown extends StatefulWidget {
 }
 
 class SearchableDropdownState extends State<SearchableDropdown> {
-  List<String> _filteredItems = [];
+  List<dynamic> _filteredItems = [];
   bool _isDropdownOpen = false;
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
