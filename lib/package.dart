@@ -8,3 +8,5 @@ export 'src/simple_radio_list/simple_radio_form_field.dart';
 
 export 'src/panel_relatory/item_dropdown.dart';
 export 'src/panel_relatory/searchable_dropdown.dart';
+
+export 'src/components/export_relatory.dart';
