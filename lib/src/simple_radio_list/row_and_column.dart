@@ -1,14 +1,11 @@
 import 'package:coocree_radio_group/package.dart';
-import 'package:coocree_radio_group/src/simple_list/checkbox_item.dart';
+import 'package:coocree_radio_group/src/simple_radio_list/radio_item.dart';
 import 'package:flutter/material.dart';
 
 // RowAndColumn exibe uma lista de radio buttons em uma grade de linhas e colunas
 class RowAndColumn extends StatefulWidget {
   // As restrições de tamanho da grade
   final BoxConstraints constraints;
-
-  // O valor inicial do formulário
-  final List<OptionItem>? initialValue;
 
   // O número máximo de colunas na grade
   final int maxColumns;
@@ -17,13 +14,13 @@ class RowAndColumn extends StatefulWidget {
   final List<OptionItem> options;
 
   // O estado do formulário ao qual o grupo de radio buttons pertence
-  final FormFieldState<List<OptionItem>> state;
+  final FormFieldState<String> state;
 
   // A largura do item do radio button
   final double width;
 
   // Função chamada quando um item do radio button é alterado
-  final ValueChanged<List<OptionItem>?>? onChanged;
+  final ValueChanged<String?>? onChanged;
 
   const RowAndColumn({
     Key? key,
@@ -33,7 +30,6 @@ class RowAndColumn extends StatefulWidget {
     required this.state,
     required this.width,
     required this.onChanged,
-    required this.initialValue,
   }) : super(key: key);
 
   @override
@@ -42,26 +38,6 @@ class RowAndColumn extends StatefulWidget {
 
 // Estado do widget RowAndColumn
 class _RowAndColumnState extends State<RowAndColumn> {
-  void isChecked(OptionItem optionItem) {
-    for (OptionItem optionSelectedItem in widget.initialValue!) {
-      if (optionSelectedItem.id == optionItem.id) {
-        optionItem.value = optionSelectedItem.value;
-      }
-    }
-  }
-
-  void prepareChecked() {
-    for (var optionItem in widget.options) {
-      isChecked(optionItem);
-    }
-  }
-
-  @override
-  void initState() {
-    prepareChecked();
-    super.initState();
-  }
-
   // Método que constrói a grade de linhas e colunas
   Column buildWidget() {
     List<Widget> listChildren = [];
@@ -72,18 +48,16 @@ class _RowAndColumnState extends State<RowAndColumn> {
     for (int i = 0; i < len - maxItems; i += widget.maxColumns) {
       List listGroup = widget.options.sublist(i, i + widget.maxColumns);
       List<Widget> listLabelValue = [];
-      for (OptionItem optionItem in listGroup) {
+      for (var element in listGroup) {
         // Cria um item do radio button e adiciona à linha
         Widget item = Container(
           width: widget.width,
           constraints: BoxConstraints(maxWidth: widget.constraints.maxWidth),
-          child: CheckBoxItem(
+          child: RadioItem(
             state: widget.state,
-            optionItem: optionItem,
-            listOptionsItem: widget.options,
-            onChanged: (value) {
-              widget.onChanged!(widget.options);
-            },
+            groupValue: widget.state.value,
+            optionItem: element,
+            onChanged: widget.onChanged,
           ),
         );
         listLabelValue.add(item);
@@ -100,13 +74,11 @@ class _RowAndColumnState extends State<RowAndColumn> {
         Widget item = Container(
           width: widget.width,
           constraints: BoxConstraints(maxWidth: widget.constraints.maxWidth),
-          child: CheckBoxItem(
-            listOptionsItem: widget.options,
+          child: RadioItem(
             state: widget.state,
+            groupValue: widget.state.value,
             optionItem: element,
-            onChanged: (value) {
-              widget.onChanged!(widget.options);
-            },
+            onChanged: widget.onChanged,
           ),
         );
         listLabelValue.add(item);

@@ -52,6 +52,11 @@ class _ExamplePageState extends State<ExamplePage> {
     OptionItem(label: "EntregaA", value: true, id: "entregaA"),
   ];
 
+  final List<OptionItem> listRadio = [
+    OptionItem(id: "Listen", label: "Listen", value: "listen"),
+    OptionItem(id: "Hear", label: "Hear", value: "hear"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +69,22 @@ class _ExamplePageState extends State<ExamplePage> {
                 key: formKey,
                 child: Column(
                   children: [
+                    SimpleRadioFormField(
+                      options: listRadio,
+                      validator: (value) {
+                        print("VALIDATOR-->>$value");
+                        if (value == null) {
+                          return 'Por favor selecione um produto';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        print("ONCHANGED-->>$value");
+                      },
+                      onSaved: (value) {
+                        print("ONSAVED-->$value");
+                      },
+                    ),
                     SimpleCheckBoxFormField(
                       initialValue: listOptionSelectedItem,
                       options: listOptionItem,

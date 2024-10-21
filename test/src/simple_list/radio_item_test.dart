@@ -1,5 +1,5 @@
 import 'package:coocree_radio_group/package.dart';
-import 'package:coocree_radio_group/src/simple_list/checkbox_item.dart';
+import 'package:coocree_radio_group/src/simple_checkbox_list/checkbox_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
