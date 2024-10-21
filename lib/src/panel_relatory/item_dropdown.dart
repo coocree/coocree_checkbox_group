@@ -32,6 +32,7 @@ class DropFormItemState extends State<DropFormItem> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      menuMaxHeight: 200,
       dropdownColor: const Color.fromARGB(255, 235, 235, 235),
       value: _selectedItem,
       hint: widget.hintText != null ? Text(widget.hintText!) : null,
