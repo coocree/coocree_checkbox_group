@@ -64,11 +64,11 @@ class _ExportRelatoryState extends State<ExportRelatory> {
               )
             else if (selectedOption == "ar")
               const DropFormItem(
-                hintText: "Defeitos",
+                hintText: "Selecione a AR",
                 items: [
-                  'Teste1',
-                  'Teste2',
-                  'Teste3',
+                  '1',
+                  '2',
+                  '3',
                 ],
               ),
           ],
